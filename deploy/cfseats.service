@@ -1,0 +1,27 @@
+[Unit]
+Description=Free idle Cloudflare Zero Trust seats
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=cfseats
+Group=cfseats
+EnvironmentFile=/etc/cfseats/cfseats.env
+ExecStart=/usr/bin/python3 /opt/cfseats/cfseats.py
+TimeoutStartSec=15min
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+UMask=0077
