@@ -48,3 +48,7 @@ Variables already set in the environment override the file.
 ## Test
 
     python3 -m unittest discover -s tests -v
+
+## License
+
+[MIT](LICENSE)
